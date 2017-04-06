@@ -54,12 +54,20 @@ keystone.set('routes', require('./routes'));
 keystone.Email.defaults.templateExt = 'hbs';
 keystone.Email.defaults.templateEngine = require('handlebars');
 
-
 // Configure the navigation bar in Keystone's Admin UI
 keystone.set('nav', {
 	posts: ['posts', 'post-categories'],
 	users: 'users',
 });
+
+// Configure the environment
+keystone.set('mongo', process.env.MONGODB_URI || 'mongodb://localhost/learnings'); // TODO: check this fallback
+
+if (keystone.get('env') == 'production'){
+	console.info('env = ' + keystone.get('env'));
+    keystone.set('cloudinary config', process.env.CLOUDINARY_URL);
+    keystone.set('cookie secret', process.env.COOKIE_SECRET);
+}
 
 // Start Keystone to connect to your database and initialise the web server
 
