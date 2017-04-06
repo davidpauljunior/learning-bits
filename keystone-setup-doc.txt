@@ -1,0 +1,46 @@
+https://gist.github.com/vitalbone/e49650000dcd005cac48
+for setup guide for deploying keystone app to heroku
+
+Make sure mongo is installed
+Start mongo with `mongod`
+You may need to change permissions on /data/db for mongo to run.
+ -- http://stackoverflow.com/questions/15229412/unable-to-create-open-lock-file-data-mongod-lock-errno13-permission-denied
+ Try sudo chown $USER /data/db
+ To find the user `whoami`
+
+
+Set env vars in the production environment, for example in heroku control panel.
+.env file keystone creates (yeoman geneerator) is gitignored
+Copy the vars set there into production server
+
+Then, check the environment keystone is running in.
+E.g. set mongo to the mongodb_uri key in prod otherwise set to localhost (should this be the /data/db?? - check)
+
+// Set the database
+keystone.set('mongo', process.env.MONGODB_URI || 'mongodb://localhost/learnings');
+
+// Check the environment keystone is running in.  If the production flag is set (on production server),
+set the cloudinary config and the cookie secret.  Should mongo_db be set here?
+If it's production
+
+if (keystone.get('env') == 'production'){
+	console.info('env = ' + keystone.get('env'));
+    keystone.set('cloudinary config', process.env.CLOUDINARY_URL);
+    keystone.set('cookie secret', process.env.COOKIE_SECRET);
+}
+
+
+---
+
+To find the mongodb's that you have installed locally
+mongo  --eval  "printjson(db.adminCommand('listDatabases'))" 
+You can run commands from within the mongo shell, which can be started with `mongo`
+Tell it which database to use (not sure if this is setting stuff of just for purpose of mongo shell exploration)
+`use learnings`
+`show collections` (should see something like app_updates, users)
+`db.<collection>.find()` lists objects in collection
+
+note `help` can be used to list commands available
+
+Populate items
+TODO: https://gist.github.com/JedWatson/10739959
