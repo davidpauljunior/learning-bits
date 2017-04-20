@@ -11,8 +11,8 @@ var handlebars = require('express-handlebars');
 // and documentation.
 
 keystone.init({
-	'name': 'Learning bits',
-	'brand': 'Learning bits',
+	'name': 'Learnings',
+	'brand': 'Learnings',
 
 	'sass': 'public',
 	'static': 'public',
@@ -32,6 +32,8 @@ keystone.init({
 	'session': true,
 	'auth': true,
 	'user model': 'User',
+	'wysiwyg additional buttons': 'blockquote, table', // TODO: codesample
+	'wysiwyg additional plugins': 'table'
 });
 
 // Load your project's Models
