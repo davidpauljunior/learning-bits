@@ -32,8 +32,12 @@ keystone.init({
 	'session': true,
 	'auth': true,
 	'user model': 'User',
-	'wysiwyg additional buttons': 'blockquote, table', // TODO: codesample
-	'wysiwyg additional plugins': 'table'
+	'wysiwyg additional options': {
+        external_plugins: {
+            'codesample':'/js/tinymce/plugins/codesample/plugin.min.js'
+       }
+	},
+	'wysiwyg additional buttons': 'codesample'
 });
 
 // Load your project's Models
