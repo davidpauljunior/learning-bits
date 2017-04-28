@@ -37,7 +37,7 @@ keystone.init({
             'codesample':'/js/tinymce/plugins/codesample/plugin.min.js'
        }
 	},
-	'wysiwyg additional buttons': 'codesample'
+	'wysiwyg additional buttons': 'codesample',
 });
 
 // Load your project's Models
